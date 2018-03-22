@@ -26,10 +26,10 @@ class ControllerContact {
     })
   }
 
-  static update(contactId, newEmail){
+  static update(contactId, column, value){
 
     let newData = {
-      email: newEmail
+      [column]: value
     };
 
     Model.Contact.update(newData, {where: { id: contactId } })

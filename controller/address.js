@@ -26,10 +26,10 @@ class ControllerAddress {
     })
   }
 
-  static update(addressId, street){
+  static update(addressId, column,value){
 
     let newData = {
-      street: street
+      [column]: value
     };
 
     Model.Address.update(newData, {where: { id: addressId } })
