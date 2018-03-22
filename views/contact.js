@@ -15,6 +15,10 @@ class ViewContact {
         console.log(data)
     }
 
+    static notifDestroy(data){
+        console.log(`Dari halaman view`)
+        console.log(data)
+    }
 
 }
 

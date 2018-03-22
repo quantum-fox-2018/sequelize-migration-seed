@@ -7,9 +7,6 @@ class ControllerContact {
         .then(dataContact => {
             Views.list(dataContact)
         })
-        .catch(err =>{
-            console.log(err)
-        })
     }
 
     static add(name,email,phone){
@@ -23,9 +20,6 @@ class ControllerContact {
         .then(row =>{
             Views.notifAdd(`Data ${row.dataValues.id}, ${row.dataValues.name} berhasil ditambahkan !`)
         })
-        .catch(err =>{
-            console.log(err)
-        })
     }
 
     static update(id,column,value){
@@ -35,16 +29,21 @@ class ControllerContact {
         },{
             where: { id: id }
         })
-        .then(row =>{
-            Views.notifUpdate(`Data ${id}, berhasil di update !`)
-        })
-        .catch(err =>{
-            console.log(err)
+        .then(() =>{
+            Views.notifUpdate(`Data ${id}, ${value} berhasil di update !`)
         })
     }
 
-    static destroy(){
-        
+    static destroy(id){
+
+        Models.Contact.destroy({
+            where: {
+              id: id
+            }
+        })
+        .then(() =>{
+            Views.notifDestroy(`Data ${id} berhasil terhapus !`)
+        })
     }
 }
 
