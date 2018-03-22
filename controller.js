@@ -70,7 +70,18 @@ class Controller{
                     View.showMessage(err);
                 })
             }else if(command == 'add'){
+                let street = argv[4];
+                let city = argv[5];
+                let zip_code = argv[6];
 
+                model.Contact.build({
+                    street: street,
+                    city: city,
+                    zip_code: zip_code
+                }).save()
+                .catch(err =>{
+                    View.showMessage(err);
+                })
             }
         }else if(command == 'update'){
             let id = argv[4];
