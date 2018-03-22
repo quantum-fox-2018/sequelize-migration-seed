@@ -1,20 +1,33 @@
-const Controller = require('./controller/controller.js');
+const {Contact, Address} = require('./controller/controller.js');
 
 let input = process.argv;
 let command = input[2];
 
 switch (command) {
   case 'contacts:list':
-    Controller.list();
+    Contact.list();
     break;
   case 'contacts:add':
-    Controller.add(input[3], input[4], input[5]);
+    Contact.add(input[3], input[4], input.slice(5).join(' '));
     break;
   case 'contacts:update':
-    Controller.update(input[3], input[4]);
+    Contact.update(input[3], input[4], input.slice(5).join(' '));
     break;
   case 'contacts:delete':
-    Controller.delete(input[3]);
+    Contact.delete(input[3]);
+    break;
+
+  case 'addresses:list':
+    Address.list();
+    break;
+  case 'addresses:add':
+    Address.add(input[3], input[4], input.slice(5).join(' '));
+    break;
+  case 'addresses:update':
+    Address.update(input[3], input[4], input.slice(5).join(' '));
+    break;
+  case 'addresses:delete':
+    Address.delete(input[3]);
     break;
   default:
 }
