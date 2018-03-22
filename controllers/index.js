@@ -24,6 +24,7 @@ class Controller {
     static contactslist() {
         Models.Contact.findAll({raw:true}).then(contacts_data => {
             View.contactslist(contacts_data)
+            process.exit();
         })
     }
 
@@ -37,6 +38,7 @@ class Controller {
         Models.Contact.create({ name:name,email:email,phone:phone,createdAt:createdAt,updatedAt:updatedAt })
         .then(new_data => {
             View.contactsadd(new_data.dataValues);
+            process.exit();
         }); 
     }
 
@@ -45,10 +47,10 @@ class Controller {
         let column = input_data[1];
         let value = input_data[2];
         
-
         Models.Contact.update({[column]:value},{where: {id:id}})
         .then(() => {
             View.contactsadd(id);
+            process.exit();
         });   
     }
 
@@ -58,9 +60,8 @@ class Controller {
         Models.Contact.destroy({where:{id:id}})
         .then(() => {
             View.deleteadd(id);
+            process.exit();
         })
-
-
     }
 
 
